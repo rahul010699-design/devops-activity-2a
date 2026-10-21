@@ -1,0 +1,19 @@
+project_id = "lunar-works-316500"
+region     = "asia-south1"
+
+network_name = "activity-2a-prod-vpc"
+subnet_name  = "activity-2a-prod-subnet"
+
+subnet_cidr           = "10.20.0.0/20"
+pods_cidr             = "10.21.0.0/16"
+services_cidr         = "10.22.0.0/20"
+private_services_cidr = "10.60.0.0/24"
+
+cluster_name = "activity-2a-prod-gke"
+
+database_instance_name = "activity-2a-prod-postgres"
+database_name          = "activity2a"
+database_user          = "activity2a_user"
+
+database_tier      = "db-custom-2-7680"
+database_disk_size = 20

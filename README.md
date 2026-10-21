@@ -352,3 +352,22 @@ Verify the database configuration and Secret Manager permissions without printin
 The development application, its Cloud SQL integration, and key IAM configuration checks have been verified. Terraform reports no changes for the development and production environments.
 
 Complete the final assignment-rubric review, document any remaining required evidence, and confirm all submission deliverables before marking the project complete.
+
+## Development vs Production
+
+Both environments use the same reusable Terraform modules and Google Cloud project and region. Their resource names and Cloud SQL sizing differ.
+
+| Setting | Development | Production |
+|---|---|---|
+| VPC | `activity-2a-dev-vpc` | `activity-2a-prod-vpc` |
+| Subnet | `activity-2a-dev-subnet` | `activity-2a-prod-subnet` |
+| GKE cluster | `activity-2a-dev-gke` | `activity-2a-prod-gke` |
+| Cloud SQL instance | `activity-2a-dev-postgres` | `activity-2a-prod-postgres` |
+| Cloud SQL tier | `db-custom-1-3840` | `db-custom-2-7680` |
+| Cloud SQL disk size | 10 GB | 20 GB |
+
+Both environments use region `asia-south1` in project `lunar-works-316500`, while separate Terraform backend prefixes isolate their states.
+
+The actual `terraform.tfvars` files are excluded from Git. The tracked `terraform.tfvars.example` files provide configuration examples. To use an environment, copy its example to `terraform.tfvars` and adjust its non-secret settings as necessary.
+
+Database passwords must remain in Secret Manager and must not be added to these example files.

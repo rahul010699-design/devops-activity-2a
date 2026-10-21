@@ -42,3 +42,6 @@ terraform.rc
 .idea/
 .DS_Store
 Thumbs.db
+
+# Local submission evidence
+submission-evidence/
