@@ -45,3 +45,6 @@ Thumbs.db
 
 # Local submission evidence
 submission-evidence/
+
+# Sensitive Terraform recovery backup
+/terraform/environments/dev/state-backup-before-cloudsql-repair.json
