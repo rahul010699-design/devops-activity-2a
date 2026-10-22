@@ -348,7 +348,6 @@ Verify the database configuration and Secret Manager permissions without printin
 - Do not delete infrastructure or Terraform state as a troubleshooting shortcut.
 
 ## Project Status
-## Project Status
 
 The local Docker Compose application and PostgreSQL database have been tested successfully. The API health check passed, and database records persisted after the containers were restarted.
 
@@ -359,15 +358,6 @@ Kubernetes deployment verification is currently blocked because Windows Applicat
 The development infrastructure was provisioned again after an earlier partial teardown. A complete clean destroy-and-recreate test remains unconfirmed because of the earlier Google Cloud Service Networking dependency issue. Production infrastructure is separate and must not be modified during development cleanup or recreation.
 
 Final verification requires restoring authorized Kubernetes CLI access, collecting any remaining evidence, and completing the development destroy-and-recreate test.
-The local Docker Compose application and PostgreSQL database have been tested successfully. The API health check passed, and database records persisted after the containers were restarted.
-
-Terraform formatting checks and validation passed for both development and production configurations. The development and production environments use separate Google Cloud Storage remote-state prefixes.
-
-The development infrastructure teardown is currently incomplete. Google Cloud reports that a producer service is still using the development private Service Networking connection. The remaining development networking resources cannot yet be safely removed. Recreating the development infrastructure and performing final cloud verification are pending.
-
-Production resources remain separate and must not be modified during development cleanup or recreation.
-
-The project will be considered complete after the development environment can be cleanly destroyed and recreated, final validation evidence is collected, and all required submission files are reviewed.
 ## Development vs Production
 
 Both environments use the same reusable Terraform modules and Google Cloud project and region. Their resource names and Cloud SQL sizing differ.
@@ -386,3 +376,4 @@ Both environments use region `asia-south1` in project `lunar-works-316500`, whil
 The actual `terraform.tfvars` files are excluded from Git. The tracked `terraform.tfvars.example` files provide configuration examples. To use an environment, copy its example to `terraform.tfvars` and adjust its non-secret settings as necessary.
 
 Database passwords must remain in Secret Manager and must not be added to these example files.
+
