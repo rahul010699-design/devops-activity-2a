@@ -1,4 +1,4 @@
-﻿# DevOps Activity 2A — GCP Infrastructure and Application Deployment
+# DevOps Activity 2A — GCP Infrastructure and Application Deployment
 
 ## Project Overview
 
@@ -376,4 +376,3 @@ Both environments use region `asia-south1` in project `lunar-works-316500`, whil
 The actual `terraform.tfvars` files are excluded from Git. The tracked `terraform.tfvars.example` files provide configuration examples. To use an environment, copy its example to `terraform.tfvars` and adjust its non-secret settings as necessary.
 
 Database passwords must remain in Secret Manager and must not be added to these example files.
-
