@@ -1,3 +1,4 @@
+
 resource "google_sql_database_instance" "postgres" {
   name             = var.instance_name
   database_version = "POSTGRES_16"
@@ -24,13 +25,17 @@ resource "google_sql_database_instance" "postgres" {
   deletion_protection = false
 }
 
-resource "google_sql_database" "database" {
-  name     = var.database_name
-  instance = google_sql_database_instance.postgres.name
-}
-
 resource "google_sql_user" "user" {
   name     = var.database_user
   instance = google_sql_database_instance.postgres.name
   password = var.database_password
+}
+
+resource "google_sql_database" "database" {
+  name     = var.database_name
+  instance = google_sql_database_instance.postgres.name
+
+  # Create the database after the user so Terraform deletes
+  # the database before attempting to delete the user.
+  depends_on = [google_sql_user.user]
 }

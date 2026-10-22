@@ -4,7 +4,7 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 7.0"
+      version = "~> 8.1"
     }
 
     random = {
@@ -35,6 +35,7 @@ resource "google_service_networking_connection" "private_vpc_connection" {
   network                 = module.network.network_id
   service                 = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [module.network.private_services_range_name]
+  deletion_policy         = "REMOVE_PEERING"
 }
 
 module "gke" {
@@ -66,6 +67,7 @@ module "cloudsql" {
     google_secret_manager_secret_version.database_password
   ]
 }
+
 output "vpc_name" {
   description = "Dev VPC network name"
   value       = module.network.network_name
