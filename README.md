@@ -349,15 +349,34 @@ Verify the database configuration and Secret Manager permissions without printin
 
 ## Project Status
 
-The local Docker Compose application and PostgreSQL database have been tested successfully. The API health check passed, and database records persisted after the containers were restarted.
+## Project Status
 
-Terraform formatting and validation checks pass for both development and production configurations. The development GKE cluster and Cloud SQL instance have been provisioned. The development database password is stored in Secret Manager, with accessor permissions configured for the application service account.
+The local Docker Compose application and PostgreSQL database have been tested
+successfully. Database records persisted after the containers were restarted.
 
-Kubernetes deployment verification is currently blocked because Windows Application Control prevents the local `gke-gcloud-auth-plugin.exe` from executing. Therefore, the current live deployment status and GKE API endpoint checks remain unverified.
+The development infrastructure was successfully destroyed and recreated
+using Terraform. The apply completed with 12 resources added, 0 changed,
+and 0 destroyed.
 
-The development infrastructure was provisioned again after an earlier partial teardown. A complete clean destroy-and-recreate test remains unconfirmed because of the earlier Google Cloud Service Networking dependency issue. Production infrastructure is separate and must not be modified during development cleanup or recreation.
+The development API was successfully deployed to GKE. The deployment
+reached 1/1 available, and the /health endpoint returned healthy.
+The /users endpoint successfully retrieved and created database records.
 
-Final verification requires restoring authorized Kubernetes CLI access, collecting any remaining evidence, and completing the development destroy-and-recreate test.
+After restarting the API pod, all three test records remained accessible,
+confirming persistence across an application pod restart.
+
+The development database password is managed through Google Secret Manager,
+with access configured for the application service account.
+
+Development and production use separate Terraform configurations and
+remote-state prefixes. The development destroy-and-recreate test was
+performed without modifying production infrastructure.
+
+Local verification evidence is stored separately in the
+submission-evidence directory and is not included in Git.
+
+The development infrastructure remains provisioned and may incur ongoing
+Google Cloud charges.
 ## Development vs Production
 
 Both environments use the same reusable Terraform modules and Google Cloud project and region. Their resource names and Cloud SQL sizing differ.
