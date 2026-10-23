@@ -349,8 +349,6 @@ Verify the database configuration and Secret Manager permissions without printin
 
 ## Project Status
 
-## Project Status
-
 The local Docker Compose application and PostgreSQL database have been tested
 successfully. Database records persisted after the containers were restarted.
 
@@ -395,19 +393,3 @@ Both environments use region `asia-south1` in project `lunar-works-316500`, whil
 The actual `terraform.tfvars` files are excluded from Git. The tracked `terraform.tfvars.example` files provide configuration examples. To use an environment, copy its example to `terraform.tfvars` and adjust its non-secret settings as necessary.
 
 Database passwords must remain in Secret Manager and must not be added to these example files.
-
-## Project Status
-
-The local Docker Compose application and PostgreSQL database have been tested successfully. The API health check passed, and database records persisted after the containers were restarted.
-
-The development infrastructure was successfully destroyed and recreated using Terraform. The recreation completed with 12 resources added and no changes or destructions in that apply. The development configuration passed `terraform validate`.
-
-The development Kubernetes API was redeployed to GKE. The deployment reached `1/1` available, the `/health` endpoint returned `healthy`, and `/users` returned three database records. After restarting the API pod, all three records remained accessible. Both database reads and writes were tested successfully.
-
-The development database password is managed through Google Secret Manager, with access configured for the application service account.
-
-Development and production use separate Terraform state prefixes in the Google Cloud Storage backend. The development destroy-and-recreate test was performed without modifying production infrastructure.
-
-Local verification evidence is stored in the `submission-evidence/` directory. This directory is ignored by Git, so the evidence files must be provided separately if required by the evaluator.
-
-The development environment is currently provisioned. Cloud resources may incur ongoing charges and should be cleaned up after evaluation if they are no longer needed.
